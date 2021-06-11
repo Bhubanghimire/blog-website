@@ -1,0 +1,149 @@
+{% extends 'base.html' %}
+    <!-- BEGIN: Content-->
+
+    <div class="app-content content ">
+        <div class="content-overlay"></div>
+        
+            <div class="content-header row">
+                <div class="content-header-right text-md-right col-md-3 col-12 d-md-block d-none">
+                    <div class="form-group breadcrumb-right">
+                        <div class="dropdown">
+                            <button class="btn-icon btn btn-primary btn-round btn-sm dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i data-feather="grid"></i></button>
+                            <div class="dropdown-menu dropdown-menu-right"><a class="dropdown-item" href="app-todo.html"><i class="mr-1" data-feather="check-square"></i><span class="align-middle">Todo</span></a><a class="dropdown-item" href="app-chat.html"><i class="mr-1" data-feather="message-square"></i><span class="align-middle">Chat</span></a><a class="dropdown-item" href="app-email.html"><i class="mr-1" data-feather="mail"></i><span class="align-middle">Email</span></a><a class="dropdown-item" href="app-calendar.html"><i class="mr-1" data-feather="calendar"></i><span class="align-middle">Calendar</span></a></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            {% block content %}
+            <div class="content-detached content-left">
+                <div class="content-body">
+                    <!-- Blog Detail -->
+                    <div class="blog-detail-wrapper">
+                        <div class="row">
+                            <!-- Blog -->
+                            <div class="col-12">
+                                <div class="card">
+                                    <img src="/media/{{detail.image}}" style="height:260px" class="img-fluid card-img-top" alt="Blog Detail Pic" />
+                                    <div class="card-body">
+                                        <h4 class="card-title">The Best Features Coming to iOS and Web design</h4>
+                                        <div class="media">
+                                            <div class="avatar mr-50">
+                                                <img src="/media/{{detail.created_by.image}}" alt="Avatar" width="24" height="24" />
+                                            </div>
+                                            <div class="media-body">
+                                                <small class="text-muted mr-25">by</small>
+                                                <small><a href="javascript:void(0);" class="text-body">{{detail.created_by}}</a></small>
+                                                <span class="text-muted ml-50 mr-25">|</span>
+                                                <small class="text-muted">{{detail.created_date}}</small>
+                                            </div>
+                                        </div>
+                                        <div class="my-1 py-25">
+                                            {% for j in detail.category.all %}
+                                                <a href="javascript:void(0);">
+                                                    <div class="badge badge-pill badge-light-info mr-50">{{j}}</div>
+                                                </a>
+                                            {% endfor %}
+                                            
+                                        </div>
+                                        <div style="background-color: aliceblue;">
+                                           <pre style="background-color: white;">{{detail.post}}</pre> 
+                                  
+                                        </div>
+                                       
+                                        <hr class="my-2" />
+                                        <div class="d-flex align-items-center justify-content-between">
+                                            <div class="dropdown blog-detail-share">
+                                                <i data-feather="share-2" class="font-medium-5 text-body cursor-pointer" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></i>
+                                                <div class="dropdown-menu dropdown-menu-right">
+                                                    <a href="javascript:void(0);" class="dropdown-item py-50 px-1">
+                                                        <i data-feather="github" class="font-medium-3"></i>
+                                                    </a>
+                                                    <a href="javascript:void(0);" class="dropdown-item py-50 px-1">
+                                                        <i data-feather="gitlab" class="font-medium-3"></i>
+                                                    </a>
+                                                    <a href="javascript:void(0);" class="dropdown-item py-50 px-1">
+                                                        <i data-feather="facebook" class="font-medium-3"></i>
+                                                    </a>
+                                                    <a href="javascript:void(0);" class="dropdown-item py-50 px-1">
+                                                        <i data-feather="twitter" class="font-medium-3"></i>
+                                                    </a>
+                                                    <a href="javascript:void(0);" class="dropdown-item py-50 px-1">
+                                                        <i data-feather="linkedin" class="font-medium-3"></i>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--/ Blog -->
+
+                            <!-- Blog Comment -->
+                            <div class="col-12" id="blogComment">
+                                <h6 class="section-label">Comment</h6>
+                                <div class="card">
+                                    <div class="card-body">
+                                        <div class="media">
+                                            <div class="avatar mr-75">
+                                                <img src="../../../app-assets/images/portrait/small/avatar-s-9.jpg" width="38" height="38" alt="Avatar" />
+                                            </div>
+                                            <div class="media-body">
+                                                <h6 class="font-weight-bolder mb-25">Chad Alexander</h6>
+                                                <p class="card-text">May 24, 2020</p>
+                                                <p class="card-text">
+                                                    A variation on the question technique above, the multiple-choice question great way to engage your
+                                                    reader.
+                                                </p>
+                                                <a href="javascript:void(0);">
+                                                    <div class="d-inline-flex align-items-center">
+                                                        <i data-feather="corner-up-left" class="font-medium-3 mr-50"></i>
+                                                        <span>Reply</span>
+                                                    </div>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--/ Blog Comment -->
+
+                            <!-- Leave a Blog Comment -->
+                            <div class="col-12">
+                                <h6 class="section-label">Leave a Comment</h6>
+                                <div class="card">
+                                    <div class="card-body">
+                                        <form action="javascript:void(0);" class="form">
+                                            <div class="row">
+                                                <div class="col-sm-6 col-12">
+                                                    <div class="form-group mb-2">
+                                                        <input type="text" class="form-control" placeholder="Name" />
+                                                    </div>
+                                                </div>
+                                                
+                                               
+                                                <div class="col-12">
+                                                    <textarea class="form-control mb-2" rows="4" placeholder="Comment"></textarea>
+                                                </div>
+                                                <div class="col-12">
+                                                    <div class="custom-control custom-checkbox mb-2">
+                                                        <input type="checkbox" class="custom-control-input" id="blogCheckbox" />
+                                                        <label class="custom-control-label" for="blogCheckbox">Save my name, email, and website in this browser for the next time I comment.</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-12">
+                                                    <button type="submit" class="btn btn-primary">Post Comment</button>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--/ Leave a Blog Comment -->
+                        </div>
+                    </div>
+                    <!--/ Blog Detail -->
+
+                </div>
+            </div>
+{% endblock %}

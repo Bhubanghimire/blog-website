@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html class="loading" lang="en" data-textdirection="ltr">
+<!-- BEGIN: Head-->
+{% load static %}
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
+    <meta name="description" content="Vuexy admin is super flexible, powerful, clean &amp; modern responsive bootstrap 4 admin template with unlimited possibilities.">
+    <meta name="keywords" content="admin template, Vuexy admin template, dashboard template, flat admin template, responsive admin template, web app">
+    <meta name="author" content="PIXINVENT">
+    <title>Blog List - Vuexy - Bootstrap HTML admin template</title>
+    <link rel="apple-touch-icon" href="{% static 'app-assets/images/ico/apple-icon-120.png">
+    <link rel="shortcut icon" type="image/x-icon" href="{% static 'app-assets/images/ico/favicon.ico">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;1,400;1,500;1,600" rel="stylesheet">
+
+    <!-- BEGIN: Vendor CSS-->
+    <link rel="stylesheet" type="text/css" href="{% static 'app-assets/vendors/css/vendors.min.css' %}">
+    <!-- END: Vendor CSS-->
+
+    <!-- BEGIN: Theme CSS-->
+    <link rel="stylesheet" type="text/css" href="{% static 'app-assets/css/bootstrap.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'app-assets/css/bootstrap-extended.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'app-assets/css/colors.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'app-assets/css/components.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'app-assets/css/themes/dark-layout.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'app-assets/css/themes/bordered-layout.css' %}">
+
+    <!-- BEGIN: Page CSS-->
+    <link rel="stylesheet" type="text/css" href="{% static 'app-assets/css/core/menu/menu-types/horizontal-menu.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'app-assets/css/pages/page-blog.css' %}">
+    <!-- END: Page CSS-->
+
+    <!-- BEGIN: Custom CSS-->
+    <link rel="stylesheet" type="text/css" href="{% static 'assets/css/style.css' %}">
+    <!-- END: Custom CSS-->
+
+</head>
+
+
+
+<!-- END: Head-->
+
+<!-- BEGIN: Body-->
+
+<body class="horizontal-layout horizontal-menu content-detached-right-sidebar navbar-floating footer-static  " data-open="hover" data-menu="horizontal-menu" data-col="content-detached-right-sidebar">
+
+    <!-- BEGIN: Header-->
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#">Myblog</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+              <a class="nav-link" href="{% url 'home' %}">Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Contact</a>
+            </li>
+           
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" href="#">Action</a>
+                <a class="dropdown-item" href="#">Another action</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="#">Something else here</a>
+              </div>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link disabled" href="#">Disabled</a>
+            </li>
+          </ul>
+         
+        </div>
+      </nav>
+    <!-- END: Header-->
+
+
+    <!-- BEGIN: Content-->
+    <div class="content" style="margin: 20px;">
+       
+        <div class="content-wrapper">
+           
+           {% block content %}
+           {% endblock %}
+            <div class="sidebar-detached sidebar-right">
+                <div class="sidebar">
+                    <div class="blog-sidebar my-2 my-lg-0">
+                        <div class="blog-search">
+                            <div class="input-group input-group-merge">
+                                <input type="text" class="form-control" placeholder="Search here" />
+                                <div class="input-group-append">
+                                    <span class="input-group-text cursor-pointer">
+                                        <i data-feather="search"></i>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="blog-recent-posts mt-3">
+                            <h6 class="section-label">Recent Posts</h6>
+                            <div class="mt-75">
+                                <div class="media mb-2">
+                                    <a href="page-blog-detail.html" class="mr-2">
+                                        <img class="rounded" src="{% static 'app-assets/images/banner/banner-22.jpg' %}" width="100" height="70" alt="Recent Post Pic" />
+                                    </a>
+                                    <div class="media-body">
+                                        <h6 class="blog-recent-post-title">
+                                            <a href="page-blog-detail.html" class="text-body-heading">Why Should Forget Facebook?</a>
+                                        </h6>
+                                        <div class="text-muted mb-0">Jan 14 2020</div>
+                                    </div>
+                                </div>
+                                <div class="media mb-2">
+                                    <a href="page-blog-detail.html" class="mr-2">
+                                        <img class="rounded" src="{% static 'app-assets/images/banner/banner-27.jpg' %}" width="100" height="70" alt="Recent Post Pic" />
+                                    </a>
+                                    <div class="media-body">
+                                        <h6 class="blog-recent-post-title">
+                                            <a href="page-blog-detail.html" class="text-body-heading">Publish your passions, your way</a>
+                                        </h6>
+                                        <div class="text-muted mb-0">Mar 04 2020</div>
+                                    </div>
+                                </div>
+                                <div class="media mb-2">
+                                    <a href="page-blog-detail.html" class="mr-2">
+                                        <img class="rounded" src="{% static 'app-assets/images/banner/banner-39.jpg' %}" width="100" height="70" alt="Recent Post Pic" />
+                                    </a>
+                                    <div class="media-body">
+                                        <h6 class="blog-recent-post-title">
+                                            <a href="page-blog-detail.html" class="text-body-heading">The Best Ways to Retain More</a>
+                                        </h6>
+                                        <div class="text-muted mb-0">Feb 18 2020</div>
+                                    </div>
+                                </div>
+                                <div class="media">
+                                    <a href="page-blog-detail.html" class="mr-2">
+                                        <img class="rounded" src="{% static 'app-assets/images/banner/banner-35.jpg' %}" width="100" height="70" alt="Recent Post Pic" />
+                                    </a>
+                                    <div class="media-body">
+                                        <h6 class="blog-recent-post-title">
+                                            <a href="page-blog-detail.html" class="text-body-heading">Share a Shocking Fact or Statistic</a>
+                                        </h6>
+                                        <div class="text-muted mb-0">Oct 08 2020</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--/ Recent Posts -->
+
+                        <!-- Categories -->
+                        <div class="blog-categories mt-3">
+                            <h6 class="section-label">Categories</h6>
+                            <div class="mt-1">
+                                <div class="d-flex justify-content-start align-items-center mb-75">
+                                    <a href="javascript:void(0);" class="mr-75">
+                                        <div class="avatar bg-light-primary rounded">
+                                            <div class="avatar-content">
+                                                <i data-feather="watch" class="avatar-icon font-medium-1"></i>
+                                            </div>
+                                        </div>
+                                    </a>
+                                    <a href="javascript:void(0);">
+                                        <div class="blog-category-title text-body">X</div>
+                                    </a>
+                                </div>
+                                <div class="d-flex justify-content-start align-items-center mb-75">
+                                    <a href="javascript:void(0);" class="mr-75">
+                                        <div class="avatar bg-light-success rounded">
+                                            <div class="avatar-content">
+                                                <i data-feather="shopping-cart" class="avatar-icon font-medium-1"></i>
+                                            </div>
+                                        </div>
+                                    </a>
+                                    <a href="javascript:void(0);">
+                                        <div class="blog-category-title text-body">Y</div>
+                                    </a>
+                                </div>
+                                <div class="d-flex justify-content-start align-items-center mb-75">
+                                    <a href="javascript:void(0);" class="mr-75">
+                                        <div class="avatar bg-light-danger rounded">
+                                            <div class="avatar-content">
+                                                <i data-feather="command" class="avatar-icon font-medium-1"></i>
+                                            </div>
+                                        </div>
+                                    </a>
+                                    <a href="javascript:void(0);">
+                                        <div class="blog-category-title text-body">Z</div>
+                                    </a>
+                                </div>
+                                <div class="d-flex justify-content-start align-items-center mb-75">
+                                    <a href="javascript:void(0);" class="mr-75">
+                                        <div class="avatar bg-light-info rounded">
+                                            <div class="avatar-content">
+                                                <i data-feather="hash" class="avatar-icon font-medium-1"></i>
+                                            </div>
+                                        </div>
+                                    </a>
+                                    <a href="javascript:void(0);">
+                                        <div class="blog-category-title text-body">A</div>
+                                    </a>
+                                </div>
+                                
+                            </div>
+                        </div>
+                        <!--/ Categories -->
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- END: Content-->
+
+    <div class="sidenav-overlay"></div>
+    <div class="drag-target"></div>
+
+    <!-- BEGIN: Footer-->
+    <footer class="footer footer-static footer-light">
+        <p class="clearfix mb-0"><span class="float-md-left d-block d-md-inline-block mt-25">COPYRIGHT &copy; 2020<a class="ml-25" href="https://1.envato.market/pixinvent_portfolio" target="_blank">Pixinvent</a><span class="d-none d-sm-inline-block">, All rights Reserved</span></span><span class="float-md-right d-none d-md-block">Hand-crafted & Made with<i data-feather="heart"></i></span></p>
+    </footer>
+    <button class="btn btn-primary btn-icon scroll-top" type="button"><i data-feather="arrow-up"></i></button>
+    <!-- END: Footer-->
+
+
+    <!-- BEGIN: Vendor JS-->
+    <script src="{% static 'app-assets/vendors/js/vendors.min.js' %}"></script>
+    <!-- BEGIN Vendor JS-->
+
+    <!-- BEGIN: Page Vendor JS-->
+    <script src="{% static 'app-assets/vendors/js/ui/jquery.sticky.js' %}"></script>
+    <!-- END: Page Vendor JS-->
+
+    <!-- BEGIN: Theme JS-->
+    <script src="{% static 'app-assets/js/core/app-menu.js' %}"></script>
+    <script src="{% static 'app-assets/js/core/app.js' %}"></script>
+    <!-- END: Theme JS-->
+
+    <!-- BEGIN: Page JS-->
+    <!-- END: Page JS-->
+
+    <script>
+        $(window).on('load', function() {
+            if (feather) {
+                feather.replace({
+                    width: 14,
+                    height: 14
+                });
+            }
+        })
+    </script>
+</body>
+<!-- END: Body-->
+
+</html>
+
