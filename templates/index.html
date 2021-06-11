@@ -10,7 +10,7 @@
                 {% for i in post %}
                 <div class="col-md-4 col-10">
                     <div class="card">
-                        <a  href="page-blog-detail.html">
+                        <a  href="{% url 'detail' i.id %}">
                             <img class="card-img-top img-fluid" src='/media/{{i.image}}' style="width:240"   alt="Blog Post pic" />
                         </a>
                         <div class="card-body">
@@ -94,3 +94,80 @@
 
 
 {% endblock %}
+
+                        {% block category %}
+                        {% for i in category %}
+                            <div class="mt-1">
+                                <div class="d-flex justify-content-start align-items-center mb-75">
+                                    <a href="javascript:void(0);" class="mr-75">
+                                        <div class="avatar bg-light-primary rounded">
+                                            <div class="avatar-content">
+                                                <i data-feather="home" class="avatar-icon font-medium-1"></i>
+                                            </div>
+                                        </div>
+                                    </a>
+                                    <a href="javascript:void(0);">
+                                        <div class="blog-category-title text-body">{{i}}</div>
+                                    </a>
+                                </div>                               
+                            </div>
+                            {% endfor %}
+                        {% endblock %}
+
+                    {% block recentpost %}
+                            {% load static %}
+                            <div class="mt-75">
+                                <div class="media mb-2">
+                                    <a href="page-blog-detail.html" class="mr-2">
+                                        <img class="rounded" src="{% static 'app-assets/images/banner/banner-22.jpg' %}" width="100" height="70" alt="Recent Post Pic" />
+                                    </a>
+                                    <div class="media-body">
+                                        <h6 class="blog-recent-post-title">
+                                            <a href="page-blog-detail.html" class="text-body-heading">Why Should Forget Facebook?</a>
+                                        </h6>
+                                        <div class="text-muted mb-0">Jan 14 2020</div>
+                                    </div>
+                                </div>
+                                <div class="media mb-2">
+                                    <a href="page-blog-detail.html" class="mr-2">
+                                        <img class="rounded" src="{% static 'app-assets/images/banner/banner-27.jpg' %}" width="100" height="70" alt="Recent Post Pic" />
+                                    </a>
+                                    <div class="media-body">
+                                        <h6 class="blog-recent-post-title">
+                                            <a href="page-blog-detail.html" class="text-body-heading">Publish your passions, your way</a>
+                                        </h6>
+                                        <div class="text-muted mb-0">Mar 04 2020</div>
+                                    </div>
+                                </div>
+                                <div class="media mb-2">
+                                    <a href="page-blog-detail.html" class="mr-2">
+                                        <img class="rounded" src="{% static 'app-assets/images/banner/banner-39.jpg' %}" width="100" height="70" alt="Recent Post Pic" />
+                                    </a>
+                                    <div class="media-body">
+                                        <h6 class="blog-recent-post-title">
+                                            <a href="page-blog-detail.html" class="text-body-heading">The Best Ways to Retain More</a>
+                                        </h6>
+                                        <div class="text-muted mb-0">Feb 18 2020</div>
+                                    </div>
+                                </div>
+                                <div class="media">
+                                    <a href="page-blog-detail.html" class="mr-2">
+                                        <img class="rounded" src="{% static 'app-assets/images/banner/banner-35.jpg' %}" width="100" height="70" alt="Recent Post Pic" />
+                                    </a>
+                                    <div class="media-body">
+                                        <h6 class="blog-recent-post-title">
+                                            <a href="page-blog-detail.html" class="text-body-heading">Share a Shocking Fact or Statistic</a>
+                                        </h6>
+                                        <div class="text-muted mb-0">Oct 08 2020</div>
+                                    </div>
+                                </div>
+                            </div>
+                            {% endblock %}
+
+
+                            {% block navv %}
+                            {% for i in category %}
+                                <a class="dropdown-item" href="{% url 'category' i.id %}">{{i}}</a>
+                            {% endfor %}
+                                
+                            {% endblock %}

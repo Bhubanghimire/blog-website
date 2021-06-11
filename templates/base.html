@@ -47,7 +47,7 @@
 
     <!-- BEGIN: Header-->
 
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light-primary">
         <a class="navbar-brand" href="#">Myblog</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
@@ -56,23 +56,55 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
-              <a class="nav-link" href="{% url 'home' %}">Home <span class="sr-only">(current)</span></a>
+              <a class="nav-link" href="{% url 'home' %}">Home</a>
             </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  category
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    {% block navv %}
+                    {% endblock %}
+                  
+                </div>
+              </li>
+        
             <li class="nav-item">
-              <a class="nav-link" href="#">Contact</a>
+              <a class="nav-link" href="{% url 'contact' %}">Contact</a>
             </li>
-           
-              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <a class="dropdown-item" href="#">Action</a>
-                <a class="dropdown-item" href="#">Another action</a>
-                <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="#">Something else here</a>
-              </div>
-            </li>
+        
             <li class="nav-item">
-              <a class="nav-link disabled" href="#">Disabled</a>
+              <a class="nav-link " href="{% url 'about' %}">About</a>
             </li>
           </ul>
+          
+
+
+
+          <div class="collapse navbar-collapse" id="mainMenu">
+            {% if user.is_authenticated %}
+              <ul class="navbar-nav ml-auto">
+                <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle" href="#" id="userMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    {{ user.email }}
+                  </a>
+                  <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userMenu">
+                    <a class="dropdown-item" href="#">My account</a>
+                    <a class="dropdown-item" href="#">Change password</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="{% url 'logout' %}">Log out</a>
+                  </div>
+                </li>
+              </ul>
+            {% else %}
+              <form class="form-inline ml-auto">
+                <a href="{% url 'login' %}" class="btn btn-outline-secondary">Log in</a>
+                <a href="{% url 'signup' %}" class="btn btn-primary ml-2">Sign up</a>
+              </form>
+            {% endif %}
+          </div>
+
+
          
         </div>
       </nav>
@@ -101,109 +133,19 @@
                         </div>
                         <div class="blog-recent-posts mt-3">
                             <h6 class="section-label">Recent Posts</h6>
-                            <div class="mt-75">
-                                <div class="media mb-2">
-                                    <a href="page-blog-detail.html" class="mr-2">
-                                        <img class="rounded" src="{% static 'app-assets/images/banner/banner-22.jpg' %}" width="100" height="70" alt="Recent Post Pic" />
-                                    </a>
-                                    <div class="media-body">
-                                        <h6 class="blog-recent-post-title">
-                                            <a href="page-blog-detail.html" class="text-body-heading">Why Should Forget Facebook?</a>
-                                        </h6>
-                                        <div class="text-muted mb-0">Jan 14 2020</div>
-                                    </div>
-                                </div>
-                                <div class="media mb-2">
-                                    <a href="page-blog-detail.html" class="mr-2">
-                                        <img class="rounded" src="{% static 'app-assets/images/banner/banner-27.jpg' %}" width="100" height="70" alt="Recent Post Pic" />
-                                    </a>
-                                    <div class="media-body">
-                                        <h6 class="blog-recent-post-title">
-                                            <a href="page-blog-detail.html" class="text-body-heading">Publish your passions, your way</a>
-                                        </h6>
-                                        <div class="text-muted mb-0">Mar 04 2020</div>
-                                    </div>
-                                </div>
-                                <div class="media mb-2">
-                                    <a href="page-blog-detail.html" class="mr-2">
-                                        <img class="rounded" src="{% static 'app-assets/images/banner/banner-39.jpg' %}" width="100" height="70" alt="Recent Post Pic" />
-                                    </a>
-                                    <div class="media-body">
-                                        <h6 class="blog-recent-post-title">
-                                            <a href="page-blog-detail.html" class="text-body-heading">The Best Ways to Retain More</a>
-                                        </h6>
-                                        <div class="text-muted mb-0">Feb 18 2020</div>
-                                    </div>
-                                </div>
-                                <div class="media">
-                                    <a href="page-blog-detail.html" class="mr-2">
-                                        <img class="rounded" src="{% static 'app-assets/images/banner/banner-35.jpg' %}" width="100" height="70" alt="Recent Post Pic" />
-                                    </a>
-                                    <div class="media-body">
-                                        <h6 class="blog-recent-post-title">
-                                            <a href="page-blog-detail.html" class="text-body-heading">Share a Shocking Fact or Statistic</a>
-                                        </h6>
-                                        <div class="text-muted mb-0">Oct 08 2020</div>
-                                    </div>
-                                </div>
-                            </div>
+                            {% block recentpost %}
+                            
+                            {% endblock %}
                         </div>
                         <!--/ Recent Posts -->
 
                         <!-- Categories -->
                         <div class="blog-categories mt-3">
                             <h6 class="section-label">Categories</h6>
-                            <div class="mt-1">
-                                <div class="d-flex justify-content-start align-items-center mb-75">
-                                    <a href="javascript:void(0);" class="mr-75">
-                                        <div class="avatar bg-light-primary rounded">
-                                            <div class="avatar-content">
-                                                <i data-feather="watch" class="avatar-icon font-medium-1"></i>
-                                            </div>
-                                        </div>
-                                    </a>
-                                    <a href="javascript:void(0);">
-                                        <div class="blog-category-title text-body">X</div>
-                                    </a>
-                                </div>
-                                <div class="d-flex justify-content-start align-items-center mb-75">
-                                    <a href="javascript:void(0);" class="mr-75">
-                                        <div class="avatar bg-light-success rounded">
-                                            <div class="avatar-content">
-                                                <i data-feather="shopping-cart" class="avatar-icon font-medium-1"></i>
-                                            </div>
-                                        </div>
-                                    </a>
-                                    <a href="javascript:void(0);">
-                                        <div class="blog-category-title text-body">Y</div>
-                                    </a>
-                                </div>
-                                <div class="d-flex justify-content-start align-items-center mb-75">
-                                    <a href="javascript:void(0);" class="mr-75">
-                                        <div class="avatar bg-light-danger rounded">
-                                            <div class="avatar-content">
-                                                <i data-feather="command" class="avatar-icon font-medium-1"></i>
-                                            </div>
-                                        </div>
-                                    </a>
-                                    <a href="javascript:void(0);">
-                                        <div class="blog-category-title text-body">Z</div>
-                                    </a>
-                                </div>
-                                <div class="d-flex justify-content-start align-items-center mb-75">
-                                    <a href="javascript:void(0);" class="mr-75">
-                                        <div class="avatar bg-light-info rounded">
-                                            <div class="avatar-content">
-                                                <i data-feather="hash" class="avatar-icon font-medium-1"></i>
-                                            </div>
-                                        </div>
-                                    </a>
-                                    <a href="javascript:void(0);">
-                                        <div class="blog-category-title text-body">A</div>
-                                    </a>
-                                </div>
-                                
-                            </div>
+
+                            {% block category %}
+                            
+                            {% endblock %}
                         </div>
                         <!--/ Categories -->
                     </div>
