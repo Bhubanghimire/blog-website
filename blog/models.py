@@ -51,15 +51,9 @@ class User(AbstractUser,UserManager):
 
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = []
-    # objects = UserManager()
-    image = models.ImageField(upload_to='images/user/', blank=True, null=True)
+    objects = UserManager()
+    image = models.ImageField(upload_to='images/user/')
     
-# User._meta.get_field('email')._unique = True
-# User._meta.get_field('email')._blank = False
-# User._meta.get_field('username')._unique = False
-# User._meta.get_field('username')._blank = True
-# User._meta.get_field('username')._null = True
-
     
 class Category(models.Model):
     category=models.CharField(max_length=200)

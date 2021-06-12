@@ -8,13 +8,11 @@ from blog.forms import Creation
 def Signup(request):
     if request.method == 'POST':
         print("bhuban123")
-        form = Creation(request.POST)
+        form = Creation(request.POST,request.FILES)
         print(form.is_valid())
         
         if form.is_valid():
-            print("abcd")
-            print(form)
-            user = form.save()
+            user = form.save(commit=True)
             return redirect('home')
         else:
             form = Creation(request.POST)

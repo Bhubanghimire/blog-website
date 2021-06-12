@@ -43,6 +43,9 @@ INSTALLED_APPS = [
     'crispy_forms',
 ]
 
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
+
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -134,6 +137,7 @@ MEDIA_ROOT = os.path.join(BASE_DIR,'media/')
 STATICFILES_DIRS = [
     BASE_DIR / "static",
 ]
+
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
