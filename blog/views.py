@@ -8,7 +8,7 @@ from .forms import *
 def Home(request):
     post= Post.objects.all()
 
-    category = Category.objects.all().order_by('category')
+    category = Category.objects.all()
 
     param = {'post':post, 'category':category}
     for post in post:
@@ -19,7 +19,7 @@ def Home(request):
 
 def Categories(request,id):
     post=Post.objects.filter(category=id)
-    category = Category.objects.all().order_by()
+    category = Category.objects.all()
     param = {'post':post, 'category':category}
     
     return render(request,'index.html',param)
@@ -27,7 +27,7 @@ def Categories(request,id):
 
 def DetailView(request,id):
     detail=Post.objects.get(id=id)
-    category = Category.objects.all().order_by()
+    category = Category.objects.all()
     param={'detail':detail,'category':category}
     return render(request,'detail.html',param)
 
@@ -44,10 +44,10 @@ def Contact(request):
             return render(request, 'contact.html', {'form': form,'category':category})
     else:
         form = ContactForm()
-    category = Category.objects.all().order_by('category')
+    category = Category.objects.all()
     return render(request,'contact.html',{'form': form,'category':category})
 
 
 def About(request):
-    category = Category.objects.all().order_by('category')
+    category = Category.objects.all()
     return render(request,'about.html',{'category':category})
