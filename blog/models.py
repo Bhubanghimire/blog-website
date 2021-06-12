@@ -56,10 +56,15 @@ class User(AbstractUser,UserManager):
     
     
 class Category(models.Model):
-    category=models.CharField(max_length=200)
+    category=models.CharField(max_length=200, unique=True)
+
+    class Meta:
+        ordering = ('category',)
 
     def __str__(self):
         return self.category
+
+
 
 
 class Post(models.Model):
@@ -80,3 +85,11 @@ class Comment(models.Model):
     like = models.IntegerField(default=0)
     post = models.ForeignKey(Post,on_delete=models.SET_NULL,null=True)
     
+
+class Contact(models.Model):
+    full_name = models.CharField(max_length=100)
+    email = models.EmailField()
+    message = models.TextField()
+
+    def __str__(self):
+        return self.full_name

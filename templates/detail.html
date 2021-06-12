@@ -24,7 +24,7 @@
                             <!-- Blog -->
                             <div class="col-12">
                                 <div class="card">
-                                    <img src="/media/{{detail.image}}" style="height:260px" class="img-fluid card-img-top" alt="Blog Detail Pic" />
+                                    <img src="/media/{{detail.image}}" style="height:300px" class="img-fluid card-img-top" alt="Blog Detail Pic" />
                                     <div class="card-body">
                                         <h4 class="card-title">{{detail.title}}</h4>
                                         <div class="media">
@@ -202,3 +202,11 @@
                                 
                             </div>
                             {% endblock %}
+
+
+                            {% block navv %}
+                            {% for i in category %}
+                                <a class="dropdown-item" href="{% url 'category' i.id %}">{{i}}</a>
+                            {% endfor %}
+                                
+                        {% endblock %}

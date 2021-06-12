@@ -1,8 +1,79 @@
 {% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+<section class="ftco-section w-100 p-3" >
+    <div class="container" style="background-color: rgb(234, 206, 241);  color: black;">
+        <div class="row justify-content-center">
+           
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-md-10">
+                <div class="wrapper">
+                    <div class="row no-gutters">
+                        <div class="col-md-6">
+                            <div class="contact-wrap w-100 p-lg-5 p-4">
+                                <h3 class="mb-4">About Me</h3>
+                                <div id="form-message-warning" class="mb-4"></div> 
+                          <img src="/media/image/user/195800301_1144883586007790_5670629067985280180_n.jpg" alt="" height="200px">
+                                
+                            </div>
+                        </div>
+                        <div class="col-md-6 d-flex align-items-stretch">
+  
+                            <div class="info-wrap w-100 p-lg-5 p-4 img">
+                                <h3>Biography</h3>
+                                <p class="mb-4">Lorem ipsum dolor sit amet consectetur adipisicing elit. Nam consectetur doloribus error sunt. Corrupti quos id voluptatem tempore eum quisquam labore sunt natus? Mollitia nostrum ea animi consequatur consectetur labore? Lorem ipsum, dolor sit amet consectetur adipisicing elit. Facilis, blanditiis tenetur illo nihil voluptatem nulla fuga, dolores ratione quisquam nemo quia hic magnam impedit ut amet tempora, asperiores quo nam! </p>
+                        <div class="dbox w-100 d-flex align-items-start">
+                            <div class="icon d-flex align-items-center justify-content-center">
+                                <span class="fa fa-map-marker"></span>
+                            </div>
+                            <div class="text pl-3">
+                            <p><span>Address:</span> Langhali chowk,dharan-8 sunsari</p>
+                          </div>
+                      </div>
+                        <div class="dbox w-100 d-flex align-items-center">
+                            <div class="icon d-flex align-items-center justify-content-center">
+                                <span class="fa fa-phone"></span>
+                            </div>
+                            <div class="text pl-3">
+                            <p><span>Phone:</span> <a href="tel://1234567920">+977 9862853130</a></p>
+                          </div>
+                      </div>
+                        <div class="dbox w-100 d-flex align-items-center">
+                            <div class="icon d-flex align-items-center justify-content-center">
+                                <span class="fa fa-paper-plane"></span>
+                            </div>
+                            <div class="text pl-3">
+                            <p><span>Email:</span> <a href="mailto:info@yoursite.com">bhubanghimire3130@gmail.com</a></p>
+                          </div>
+                      </div>
+                        <div class="dbox w-100 d-flex align-items-center">
+                            <div class="icon d-flex align-items-center justify-content-center">
+                                <span class="fa fa-globe"></span>
+                            </div>
+                            <div class="text pl-3">
+                            <p><span>Website</span> <a href="#">mysite.com</a></p>
+                          </div>
+                      </div>
+                  </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+
+{% block searchere %}
+    <input type="hidden">                        
+{% endblock %}
 
 {% block navv %}
-    {% for i in category %}
-            <a class="dropdown-item" href="{% url 'category' i.id %}">{{i}}</a>
-    {% endfor %}
-                                
+{% for i in category %}
+    <a class="dropdown-item" href="{% url 'category' i.id %}">{{i}}</a>
+{% endfor %}
+    
 {% endblock %}
