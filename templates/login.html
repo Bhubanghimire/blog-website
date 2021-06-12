@@ -31,7 +31,7 @@
             New to Django Boards? <a href="{% url 'signup' %}">Sign up</a>
           </div>
         </div>
-        <div class="text-center py-2">
+        <div class="text-center py-0">
           <small>
             <a href="#" class="text-muted">Forgot your password?</a>
           </small>
@@ -39,4 +39,8 @@
       </div>
     </div>
   </div>
+{% endblock %}
+
+{% block searchere %}
+    <input type="hidden">                        
 {% endblock %}

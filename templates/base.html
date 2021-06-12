@@ -67,6 +67,7 @@
                     {% endblock %}
                   
                 </div>
+                
               </li>
         
             <li class="nav-item">
@@ -122,6 +123,7 @@
                 <div class="sidebar">
                     <div class="blog-sidebar my-2 my-lg-0">
                         <div class="blog-search">
+                          {% block searchere %}
                             <div class="input-group input-group-merge">
                                 <input type="text" class="form-control" placeholder="Search here" />
                                 <div class="input-group-append">
@@ -130,9 +132,10 @@
                                     </span>
                                 </div>
                             </div>
+                            {% endblock %}
                         </div>
                         <div class="blog-recent-posts mt-3">
-                            <h6 class="section-label">Recent Posts</h6>
+                           
                             {% block recentpost %}
                             
                             {% endblock %}
@@ -141,9 +144,10 @@
 
                         <!-- Categories -->
                         <div class="blog-categories mt-3">
-                            <h6 class="section-label">Categories</h6>
+                            
 
                             {% block category %}
+                           
                             
                             {% endblock %}
                         </div>
