@@ -52,7 +52,7 @@ class User(AbstractUser,UserManager):
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = []
     objects = UserManager()
-    image = models.ImageField(upload_to='images/user/')
+    image = models.ImageField(upload_to='image/user/')
     
     
 class Category(models.Model):
@@ -66,7 +66,7 @@ class Post(models.Model):
     title=models.CharField(max_length=200,default="")
     post = models.TextField()
     category = models.ManyToManyField(Category)
-    image = models.ImageField(upload_to='images/post/', blank=True, null=True)
+    image = models.ImageField(upload_to='image/post/', blank=True, null=True)
     created_by = models.ForeignKey(User, on_delete=models.SET_NULL,null=True)
     created_date =  models.DateField(auto_now=True)
 
