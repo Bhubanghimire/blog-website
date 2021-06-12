@@ -1,154 +1,148 @@
 {% extends 'base.html' %}
 
-{% block content %}
-<div class="content-detached content-left">
-    <div class="content-body">
-        <!-- Blog List -->
-        <div class="blog-list-wrapper">
-            <!-- Blog List Items -->
-            <div class="row">
-                {% for i in post %}
-                <div class="col-md-4 col-10">
-                    <div class="card">
-                        <a  href="{% url 'detail' i.id %}">
-                            <img class="card-img-top" src='/media/{{i.image}}' width="508" height="400"  alt="Blog Post pic" />
-                        </a>
-                        <div class="card-body">
-                            <h4 class="card-title">
-                                <a href="page-blog-detail.html" class="blog-title-truncate text-body-heading">{{i.title}}</a>
-                            </h4>
-                            <div class="media">
-                                <div class="avatar mr-50">
-                                   
-                                    <img src="/media/{{i.created_by.image}}"  width="24" height="24" />
-                                </div>
-                                <div class="media-body">
-                                    <small class="text-muted mr-25">by</small>
-                                    <small><a href="javascript:void(0);" class="text-body">{{i.created_by}}</a></small>
-                                    <span class="text-muted ml-50 mr-25">|</span>
-                                    <small class="text-muted">{{i.created_date}}</small>
-                                </div>
-                            </div>
-                            <div class="my-1 py-25">
-                                {% for j in i.category.all %}
-                                <a href="javascript:void(0);">
-                                    <div class="badge badge-pill badge-light-info mr-50">{{j}}</div>
-                                </a>
-                                {% endfor %}
-                                
-                            </div>
-                            <p class="card-text blog-content-truncate">
-                                {{i.post|slice:"0:50"}}
-                            </p>
-                            <hr />
-                            <div class="d-flex justify-content-between align-items-center">
-                                <a href="page-blog-detail.html#blogComment">
-                                    <div class="d-flex align-items-center">
-                                        <i data-feather="message-square" class="font-medium-1 text-body mr-50"></i>
-                                        <span class="text-body font-weight-bold">76 Comments</span>
-                                    </div>
-                                </a>
-                                <a href="{% url 'detail' i.id %}" class="font-weight-bold">Read More</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                {% endfor %}
-
-
-
-                <div class="col-md-6 col-12">
-                    <div class="card">
-                        
-                       
-                    </div>
-                </div>
-            </div>
-            <!--/ Blog List Items -->
-
-            <!-- Pagination -->
-            <div class="row">
-                <div class="col-12">
-                    <nav aria-label="Page navigation">
-                        <ul class="pagination justify-content-center mt-2">
-                            <li class="page-item prev-item"><a class="page-link" href="javascript:void(0);"></a></li>
-                            <li class="page-item"><a class="page-link" href="javascript:void(0);">1</a></li>
-                            <li class="page-item"><a class="page-link" href="javascript:void(0);">2</a></li>
-                            <li class="page-item"><a class="page-link" href="javascript:void(0);">3</a></li>
-                            <li class="page-item active" aria-current="page"><a class="page-link" href="javascript:void(0);">4</a></li>
-                            <li class="page-item"><a class="page-link" href="javascript:void(0);">5</a></li>
-                            <li class="page-item"><a class="page-link" href="javascript:void(0);">6</a></li>
-                            <li class="page-item"><a class="page-link" href="javascript:void(0);">7</a></li>
-                            <li class="page-item next-item"><a class="page-link" href="javascript:void(0);"></a></li>
-                        </ul>
-                    </nav>
-                </div>
-            </div>
-            <!--/ Pagination -->
-        </div>
-        <!--/ Blog List -->
-
-    </div>
-
-    {% block contactme %}
-    {% endblock %}
-    
-
-</div>
-
-
-
-
-{% endblock %}
-
-                        {% block category %}
-                        <h6 class="section-label">Categories</h6>
-                        {% for i in category %}
-                            <div class="mt-1">
-                                <div class="d-flex justify-content-start align-items-center mb-75">
-                                    <a href="javascript:void(0);" class="mr-75">
-                                        <div class="avatar bg-light-primary rounded">
-                                            <div class="avatar-content">
-                                                <i data-feather="home" class="avatar-icon font-medium-1"></i>
+ 
+            {% block content %}
+            <div class="content-detached content-left">
+                <div class="content-body">
+                    <!-- Blog List -->
+                    <div class="blog-list-wrapper">
+                        <!-- Blog List Items -->
+                        <div class="row">
+                            {% for i in post %}
+                            <div class="col-md-4 col-12">
+                                <div class="card">
+                                    <a  href="{% url 'detail' i.id %}">
+                                        <img class="card-img-top" src='/media/{{i.image}}' width="508" height="400"  alt="Blog Post pic" />
+                                    </a>
+                                    <div class="card-body">
+                                        <h4 class="card-title">
+                                            <a href="page-blog-detail.html" class="blog-title-truncate text-body-heading">{{i.title}}</a>
+                                        </h4>
+                                        <div class="media">
+                                            <div class="avatar mr-50">
+                                                <img src="/media/{{i.created_by.image}}" width="24" height="24" />
+                                            </div>
+                                            <div class="media-body">
+                                                <small class="text-muted mr-25">by</small>
+                                                <small><a href="javascript:void(0);" class="text-body">{{i.created_by.first_name}}</a></small>
+                                                <span class="text-muted ml-50 mr-25">|</span>
+                                                <small class="text-muted">{{i.created_date}}</small>
                                             </div>
                                         </div>
-                                    </a>
-                                    <a href="javascript:void(0);">
-                                        <div class="blog-category-title text-body"> <a href="{% url 'category' i.id %}"> {{i}}</a></div>
-                                    </a>
-                                </div>                               
-                            </div>
-                            {% endfor %}
-                        {% endblock %}
-
-                    {% block recentpost %}
-                    <h6 class="section-label">Recent Posts</h6>
-                    {% for i in post|slice:"0:2" %}
-                            {% load static %}
-                            <div class="mt-75">
-                                <div class="media mb-2">
-                                    <a href="page-blog-detail.html" class="mr-2">
-                                        <img class="rounded" src="{% static 'app-assets/images/banner/banner-22.jpg' %}" width="100" height="70" alt="Recent Post Pic" />
-                                    </a>
-                                    <div class="media-body">
-                                        <h6 class="blog-recent-post-title">
-                                            <a href="page-blog-detail.html" class="text-body-heading">{{i.title}}</a>
-                                        </h6>
-                                        <div class="text-muted mb-0">{{i.created_date}}</div>
+                                        <div class="my-1 py-25">
+                                            {% for j in i.category.all %}
+                                            <a href="javascript:void(0);">
+                                                <div class="badge badge-pill badge-light-info mr-50">{{j}}</div>
+                                            </a>
+                                            {% endfor %}
+                                            
+                                        </div>
+                                        <p class="card-text blog-content-truncate">
+                                            {{i.post|slice:"0:50"}}
+                                        </p>
+                                        <hr />
+                                        <div class="d-flex justify-content-between align-items-center">
+                                            <a href="page-blog-detail.html#blogComment">
+                                                <div class="d-flex align-items-center">
+                                                    <i data-feather="message-square" class="font-medium-1 text-body mr-50"></i>
+                                                    <span class="text-body font-weight-bold">76 Comments</span>
+                                                </div>
+                                            </a>
+                                            <a href="{% url 'detail' i.id %}" class="font-weight-bold">Read More</a>
+                                        </div>
                                     </div>
                                 </div>
-                                
-                               
-                                
                             </div>
                             {% endfor %}
-                            {% endblock %}
+                        
+
+                           
+
+                            <div class="col-md-6 col-12">
+                               
+                            </div>
+                        </div>
+                        <!--/ Blog List Items -->
+
+                        <!-- Pagination -->
+                        <div class="row">
+                            <div class="col-12">
+                                <nav aria-label="Page navigation">
+                                    <ul class="pagination justify-content-center mt-2">
+                                        <li class="page-item prev-item"><a class="page-link" href="javascript:void(0);"></a></li>
+                                        <li class="page-item"><a class="page-link" href="javascript:void(0);">1</a></li>
+                                        <li class="page-item"><a class="page-link" href="javascript:void(0);">2</a></li>
+                                        <li class="page-item"><a class="page-link" href="javascript:void(0);">3</a></li>
+                                        <li class="page-item active" aria-current="page"><a class="page-link" href="javascript:void(0);">4</a></li>
+                                        <li class="page-item"><a class="page-link" href="javascript:void(0);">5</a></li>
+                                        <li class="page-item"><a class="page-link" href="javascript:void(0);">6</a></li>
+                                        <li class="page-item"><a class="page-link" href="javascript:void(0);">7</a></li>
+                                        <li class="page-item next-item"><a class="page-link" href="javascript:void(0);"></a></li>
+                                    </ul>
+                                </nav>
+                            </div>
+                        </div>
+                        <!--/ Pagination -->
+                    </div>
+                    <!--/ Blog List -->
+
+                </div>
+            </div>
+
+            {% endblock %}
 
 
-                        {% block navv %}
-                            {% for i in category %}
-                                <a class="dropdown-item" href="{% url 'category' i.id %}">{{i}}</a>
-                            {% endfor %}
-                                
-                        {% endblock %}
+
+            {% block category %}
+            <h6 class="section-label">Categories</h6>
+            {% for i in category %}
+                <div class="mt-1">
+                    <div class="d-flex justify-content-start align-items-center mb-75">
+                        <a href="javascript:void(0);" class="mr-75">
+                            <div class="avatar bg-light-primary rounded">
+                                <div class="avatar-content">
+                                    <i data-feather="home" class="avatar-icon font-medium-1"></i>
+                                </div>
+                            </div>
+                        </a>
+                        <a href="javascript:void(0);">
+                            <div class="blog-category-title text-body"> <a href="{% url 'category' i.id %}"> {{i}}</a></div>
+                        </a>
+                    </div>                               
+                </div>
+                {% endfor %}
+            {% endblock %}
+
+        {% block recentpost %}
+        <h6 class="section-label">Recent Posts</h6>
+        {% for i in post|slice:"0:2" %}
+                {% load static %}
+                <div class="mt-75">
+                    <div class="media mb-2">
+                        <a href="{% url 'detail' i.id %}" class="mr-2">
+                            <img class="rounded" src="{% static 'app-assets/images/banner/banner-22.jpg' %}" width="100" height="70" alt="Recent Post Pic" />
+                        </a>
+                        <div class="media-body">
+                            <h6 class="blog-recent-post-title">
+                                <a href="{% url 'detail' i.id %}" class="text-body-heading">{{i.title}}</a>
+                            </h6>
+                            <div class="text-muted mb-0">{{i.created_date}}</div>
+                        </div>
+                    </div>
+                    
+                   
+                    
+                </div>
+                {% endfor %}
+                {% endblock %}
+
+
+            {% block navv %}
+                {% for i in category %}
+                    <a class="dropdown-item" href="{% url 'category' i.id %}">{{i}}</a>
+                {% endfor %}
+                    
+            {% endblock %}
+
+
+

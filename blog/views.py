@@ -11,6 +11,8 @@ def Home(request):
     category = Category.objects.all().order_by('category')
 
     param = {'post':post, 'category':category}
+    for post in post:
+        print(post.created_by.image)
     
     return render(request,'index.html',param)
 
@@ -19,8 +21,7 @@ def Categories(request,id):
     post=Post.objects.filter(category=id)
     category = Category.objects.all().order_by()
     param = {'post':post, 'category':category}
-    for post in post:
-        print(post.created_by.image)
+    
     return render(request,'index.html',param)
 
 
