@@ -82,19 +82,10 @@
                                                 <p class="card-text">{{comment.created_on}}</p>
                                                 <p class="card-text">
                                                     <h4>{{comment.comment}}</h5><br>
-                                                   <small><a href="">like</a>   <a href="">Dislike</a></small>
+                                                   <small><a href="">like</a> &nbsp&nbsp  <a href="{% url 'reply' comment.id %}">Reply</a></small>
                                                    
                                                 </p>
-                                                <a href="javascript:void(0);">
-                                                    <div class="d-inline-flex align-items-center">
-                                                        <i data-feather="corner-up-left" class="font-medium-3 mr-50"></i>
-                                                        <span><a href="{% url 'reply' comment.id %}"> Reply </a></span>
-                                                    </div>
-
                                                     <br>
-
-                                                
-
                                                 </a>
                                             </div>
                                         </div>
@@ -134,7 +125,7 @@
                                 </div>
                                 {% else %}
                                 <div class="section-label">
-                                    <h2>Please <a href="{% url 'login' %}">Login</a>  for Cmnt </h2>
+                                    <h2>Please <a href="{% url 'login' %}?next={{request.path}}">Login</a>  for Cmnt </h2>
                                 </div>
                                 {% endif %}
                                 <br>

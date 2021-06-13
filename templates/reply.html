@@ -106,7 +106,7 @@
                                 </div>
                                 {% else %}
                                 <div class="section-label">
-                                    <h2>Please <a href="{% url 'login' %}">Login</a>  for Cmnt </h2>
+                                    <h2>Please <a href="{% url 'login' %}?next={{request.path}}">Login</a>  for reply </h2>
                                 </div>
                                 {% endif %}
                                 <br>
