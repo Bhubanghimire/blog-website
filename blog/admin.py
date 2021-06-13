@@ -4,14 +4,19 @@ from .models import *
 # # Register your models here.
 
 admin.site.register(Post)
-admin.site.register(Comment)
 admin.site.register(Category)
 admin.site.register(Contact)
-# from django.contrib import admin
 
-# # Register your models here.
-# from django.contrib import admin
-# from django.contrib.auth.admin import UserAdmin
+
+@admin.register(Comment)
+class CommentAdmin(admin.ModelAdmin):
+    list_display = ( 'user','comment', 'post', 'created_on')
+    list_filter = ( 'created_on',)
+    search_fields = ('name', 'email', 'comment')
+
+
+
+
 
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin as DjangoUserAdmin

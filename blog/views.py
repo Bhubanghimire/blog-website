@@ -7,13 +7,8 @@ from .forms import *
 
 def Home(request):
     post= Post.objects.all()
-
     category = Category.objects.all()
-
     param = {'post':post, 'category':category}
-    for post in post:
-        print(post.created_by.image)
-    
     return render(request,'index.html',param)
 
 
@@ -28,7 +23,29 @@ def Categories(request,id):
 def DetailView(request,id):
     detail=Post.objects.get(id=id)
     category = Category.objects.all()
-    param={'detail':detail,'category':category}
+    cmnt=Comment.objects.filter( post=detail)
+    print(cmnt)
+
+    if request.method == "POST":
+        form = CmntForm(request.POST)
+        if form.is_valid():
+            f=form.save(commit=False)
+            user=request.POST.get("name","bhuban")
+            print("comes here")
+            user=User.objects.filter(email=user)
+            if not user:
+                result ="Please Login First"
+                return(request, 'login.html',{'result':result})
+
+            f.user=user[0]
+            f.post = detail
+            f.save()
+            return redirect("detail", id=id)   
+        else:
+            print("no form")
+    else:
+        form =CmntForm()
+    param={'detail':detail,'category':category,'form':form,'cmnt':cmnt}
     return render(request,'detail.html',param)
 
 

@@ -14,3 +14,10 @@ class ContactForm(forms.ModelForm):
     class Meta:
         model = Contact
         fields =  '__all__'
+
+class CmntForm(forms.ModelForm):
+
+    class Meta:
+        model = Comment 
+        widgets = {'comment': forms.Textarea(attrs={'rows':4, 'cols':15})}
+        fields = ( 'comment',)

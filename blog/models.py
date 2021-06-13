@@ -83,7 +83,11 @@ class Comment(models.Model):
     user = models.ForeignKey(User, on_delete=models.SET_NULL,null=True,default="")
     comment = models.TextField(default="dfd")
     like = models.IntegerField(default=0)
-    post = models.ForeignKey(Post,on_delete=models.SET_NULL,null=True)
+    post = models.ForeignKey(Post,on_delete=models.SET_NULL,null=True,related_name="cmnts")
+    created_on = models.DateField(auto_now=True)
+
+    class Meta:
+        ordering = ('created_on',)
     
 
 class Contact(models.Model):
