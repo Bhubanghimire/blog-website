@@ -80,14 +80,19 @@ class Post(models.Model):
 
 
 class Comment(models.Model):
-    user = models.ForeignKey(User, on_delete=models.SET_NULL,null=True,default="")
-    comment = models.TextField(default="dfd")
+    user = models.ForeignKey(User, on_delete=models.SET_NULL,null=True,related_name="comment")
+    comment = models.TextField()
     like = models.IntegerField(default=0)
     post = models.ForeignKey(Post,on_delete=models.SET_NULL,null=True,related_name="cmnts")
     created_on = models.DateField(auto_now=True)
 
     class Meta:
         ordering = ('created_on',)
+
+    def __str__(self):
+        return self.comment
+    
+  
     
 
 class Contact(models.Model):
@@ -97,3 +102,16 @@ class Contact(models.Model):
 
     def __str__(self):
         return self.full_name
+
+
+class Reply(models.Model):
+    reply_by = models.ForeignKey(User, on_delete=models.SET_NULL,null=True,related_name="user_reply")
+    reply = models.CharField(max_length=20000)
+    reply_to = models.ForeignKey(Comment,on_delete=models.SET_NULL,null=True,related_name="reply_post")
+    created_on = models.DateField(auto_now=True)
+
+    class Meta:
+        ordering = ('created_on',)
+
+    def __str__(self):
+        return str( self.reply_by)

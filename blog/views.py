@@ -22,16 +22,24 @@ def Categories(request,id):
 
 def DetailView(request,id):
     detail=Post.objects.get(id=id)
+    print(detail)
     category = Category.objects.all()
     cmnt=Comment.objects.filter( post=detail)
-    print(cmnt)
-
+    replies=[]
+    for i in cmnt:
+        print(i)
+        rep=Reply.objects.filter(reply_to=i).exists()
+        print(rep)
+        if rep:
+            rep=Reply.objects.filter(reply_to=i)
+            replies.append(rep)
+        
+    print(replies)
     if request.method == "POST":
         form = CmntForm(request.POST)
         if form.is_valid():
             f=form.save(commit=False)
             user=request.POST.get("name","bhuban")
-            print("comes here")
             user=User.objects.filter(email=user)
             if not user:
                 result ="Please Login First"
@@ -41,12 +49,12 @@ def DetailView(request,id):
             f.post = detail
             f.save()
             return redirect("detail", id=id)   
-        else:
-            print("no form")
+        
     else:
         form =CmntForm()
-    param={'detail':detail,'category':category,'form':form,'cmnt':cmnt}
+    param={'detail':detail,'category':category,'form':form,'cmnt':cmnt,'reply':replies}
     return render(request,'detail.html',param)
+
 
 
 def Contact(request):
@@ -68,3 +76,31 @@ def Contact(request):
 def About(request):
     category = Category.objects.all()
     return render(request,'about.html',{'category':category})
+
+
+
+def ReplyView(request,id):
+    cmnt=Comment.objects.get(id=id)
+    category = Category.objects.all()
+    replies = Reply.objects.filter(reply_to=cmnt)
+    print(replies)
+    if request.method=="POST":
+        form = ReplyForm(request.POST)
+        if form.is_valid():
+            f=form.save(commit=False)
+            user=request.POST.get("name","bhuban")
+            user=User.objects.filter(email=user)
+            if not user:
+                result ="Please Login First"
+                return(request, 'login.html',{'result':result})
+
+            f.reply_by=user[0]
+            f.reply_to =cmnt
+            f.save()
+            return redirect("reply", id=id) 
+
+    else:
+        form = ReplyForm()
+        param={'category':category,'form':form,'cmnt':cmnt,'reply':replies}
+
+    return render(request,"reply.html",param)

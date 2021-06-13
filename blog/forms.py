@@ -21,3 +21,11 @@ class CmntForm(forms.ModelForm):
         model = Comment 
         widgets = {'comment': forms.Textarea(attrs={'rows':4, 'cols':15})}
         fields = ( 'comment',)
+
+
+class ReplyForm(forms.ModelForm):
+
+    class Meta:
+        model = Reply 
+        widgets = {'reply': forms.Textarea(attrs={'rows':4, 'cols':200})} 
+        fields = ( 'reply',)

@@ -1,0 +1,321 @@
+{% extends 'base.html' %}
+    <!-- BEGIN: Content-->
+            {% block content %}
+            <div class="content-detached content-left">
+                <div class="content-body">
+                    <!-- Blog Detail -->
+                    <div class="blog-detail-wrapper">
+                        <div class="row">
+                            <!-- Blog -->
+                            <div class="col-12">
+                                <div class="card">
+                                    <div class="col-12" id="blogComment">
+                                        <h6 class="section-label"><b>Comment</b> </h6>
+                                        <div class="card">
+                                            <div class="card-body">
+                                                <div class="media">
+                                                    <div class="avatar mr-75">
+                                                        <img src="/media/{{cmnt.user.image}}" width="38" height="38" alt="Avatar" />
+                                                    </div>
+                                                    <div class="media-body">
+                                                        <h6 class="font-weight-bolder mb-25">{{cmnt.user.first_name}}</h6>
+                                                        <p class="card-text">{{cmnt.created_on}}</p>
+                                                        <p class="card-text">
+                                                          <b>{{cmnt.comment}}</b> <br>
+                                                          <small><a href="">like</a>   <a href="">Dislike</a></small>
+                                                        </p>
+                                                        <h3>replies:</h3>
+                                                        
+                                                        
+                                                        {% for i in reply %}
+                                                        <a href="javascript:void(0);">
+                                                            <div class="d-inline-flex align-items-center">
+                                                                <span style="margin: 0px;">
+                                                                            
+
+                                                     <div class="card-body">
+                                                                        <h4 class="card-title">{{detail.title}}</h4>
+                                                                        <div class="media">
+                                                                        <div class="avatar mr-50">
+                                                                            <img src="/media/{{i.reply_by.image}}" alt="Avatar" width="24" height="24" />
+                                                                        </div>
+                                                                    <div class="media-body">
+                                                                        <small class="text-muted mr-25">by</small>
+                                                                        <small><a href="javascript:void(0);" class="text-body">{{i.reply_by.first_name}}  {{i.reply_by.last_name }}</a></small>
+                                                                        <span class="text-muted ml-50 mr-25">|</span>
+                                                                        <small class="text-muted">{{i.created_on}}</small>
+                                                                    </div>
+                                                                </div>
+
+                                                        <div style="background-color: aliceblue;">
+                                                            <p style="background-color: white; margin-top: 0px ;">{{i.reply}} <br>
+                                                                <a href="">like</a>   <a href="">Dislike</a>
+                                                            </p> 
+                                                        </div>
+                                                    </div>
+                                    
+
+
+                                                                </span>
+                                                            </div>
+                                                            <br>
+                                                            
+                                                        </a>
+                                                        {% endfor %}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                            <!--/ Blog -->
+                            {% load static %}
+                            <!-- Blog Comment -->
+                           
+                            <!--/ Blog Comment -->
+                            {% load crispy_forms_tags %}
+
+                            <!-- Leave a Blog Comment -->
+                            <div class="col-12">
+                                <h6 class="section-label">Leave a Reply</h6>
+                                {% if request.user.is_authenticated %}
+                                <div class="card">
+                                    <div class="card-body">
+                                        <form action="" class="form" method="POST">
+                                            {% csrf_token %}
+                                            <div class="form-row">
+                                                
+                                                <div class="form-group col-md-6 mb-0 mx-2">
+                                                    {{ form|crispy }}
+                                                    <input type="text" hidden value="{{request.user}}" name="name">
+                                                  </div>
+                                                  <div class="form-group col-md-9 mb-0 mx-2">
+                                                        <input type="hidden" value="{{request.user.email}}" name="name">
+                                                        <input type="hidden" value="{{self.request.user}}" name="post">
+                                                  </div>
+                                               
+                                                
+                                                <div class="col-md-3  mx-2">
+                                                    <button type="submit" class="btn btn-primary">Reply</button>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                                {% else %}
+                                <div class="section-label">
+                                    <h2>Please <a href="{% url 'login' %}">Login</a>  for Cmnt </h2>
+                                </div>
+                                {% endif %}
+                                <br>
+                                <br>
+                            </div>
+                            <!--/ Leave a Blog Comment -->
+                        </div>
+                    </div>
+                    <!--/ Blog Detail -->
+
+                </div>
+            </div>
+{% endblock %}
+
+
+{% block category %}
+<h6 class="section-label">Categories</h6>
+{% for i in category %}
+    <div class="mt-1">
+        <div class="d-flex justify-content-start align-items-center mb-75">
+            <a href="javascript:void(0);" class="mr-75">
+                <div class="avatar bg-light-primary rounded">
+                    <div class="avatar-content">
+                        <i data-feather="home" class="avatar-icon font-medium-1"></i>
+                    </div>
+                </div>
+            </a>
+            <a href="javascript:void(0);">
+                <div class="blog-category-title text-body"> <a href="{% url 'category' i.id %}"> {{i}}</a></div>
+            </a>
+        </div>                               
+    </div>
+    {% endfor %}
+{% endblock %}
+
+                            {% block navv %}
+                            {% for i in category %}
+                                <a class="dropdown-item" href="{% url 'category' i.id %}">{{i}}</a>
+                            {% endfor %}
+                                
+                        {% endblock %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{% load crispy_forms_tags %}
+    <!-- BEGIN: Content-->
+           
+
+            {% load static %}
+            <!-- Blog Comment -->
+           
+
+
+
+            <div class="col-12">
+                <h6 class="section-label">Leave a reply</h6>
+                {% if request.user.is_authenticated %}
+                <div class="card">
+                    <div class="card-body">
+                        <form action="" class="form" method="POST">
+                            {% csrf_token %}
+                            <div class="form-row">
+                                
+                                <div class="form-group col-md-6 mb-0 mx-2">
+                                    {{ form|crispy }}
+                                    <input type="text" hidden value="{{request.user}}" name="name">
+                                  </div>
+                                  <div class="form-group col-md-9 mb-0 mx-2">
+                                        <input type="hidden" value="{{request.user.email}}" name="name">
+                                  </div>
+                               
+                                
+                                <div class="col-md-3  mx-2">
+                                    <button type="submit" class="btn btn-primary">Reply</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                {% else %}
+                <div class="section-label">
+                    <h2>Please <a href="{% url 'login' %}">Login</a> for Reply</h2>
+                </div>
+                {% endif %}
+                <br>
+                <br>
+            </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            <div class="content-detached content-left">
+                <div class="content-body">
+                    <!-- Blog Detail -->
+                    <div class="blog-detail-wrapper">
+                        <div class="row">
+                            <!-- Blog -->
+                            <div class="col-12">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <h4 class="card-title">{{detail.title}}</h4>
+                                        <div class="media">
+                                            <div class="avatar mr-50">
+                                                <img src="/media/{{detail.created_by.image}}" alt="Avatar" width="24" height="24" />
+                                            </div>
+                                            <div class="media-body">
+                                                <small class="text-muted mr-25">by</small>
+                                                <small><a href="javascript:void(0);" class="text-body">{{detail.created_by.first_name}}  {{detail.created_by.last_name }}</a></small>
+                                                <span class="text-muted ml-50 mr-25">|</span>
+                                                <small class="text-muted">{{detail.created_date}}</small>
+                                            </div>
+                                        </div>
+                                      
+                                        <hr class="my-2" />
+                                        <div class="d-flex align-items-center justify-content-between">
+                                            <div class="dropdown blog-detail-share">
+                                                <i data-feather="share-2" class="font-medium-5 text-body cursor-pointer" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></i>
+                                                <div class="dropdown-menu dropdown-menu-right">
+                                                    <a href="javascript:void(0);" class="dropdown-item py-50 px-1">
+                                                        <i data-feather="github" class="font-medium-3"></i>
+                                                    </a>
+                                                    <a href="javascript:void(0);" class="dropdown-item py-50 px-1">
+                                                        <i data-feather="gitlab" class="font-medium-3"></i>
+                                                    </a>
+                                                    <a href="javascript:void(0);" class="dropdown-item py-50 px-1">
+                                                        <i data-feather="facebook" class="font-medium-3"></i>
+                                                    </a>
+                                                    <a href="javascript:void(0);" class="dropdown-item py-50 px-1">
+                                                        <i data-feather="twitter" class="font-medium-3"></i>
+                                                    </a>
+                                                    <a href="javascript:void(0);" class="dropdown-item py-50 px-1">
+                                                        <i data-feather="linkedin" class="font-medium-3"></i>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--/ Blog -->
+                                {% load static %}
+                            <!-- Blog Comment -->
+                           
+                            <!--/ Blog Comment -->
+                            {% load crispy_forms_tags %}
+
+                            
+                            <!--/ Leave a Blog Comment -->
+                        </div>
+                    </div>
+                    <!--/ Blog Detail -->
+
+                </div>
+            </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

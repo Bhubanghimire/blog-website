@@ -31,10 +31,13 @@
                                             {% endfor %}
                                             
                                         </div>
-                                        <div style="background-color: aliceblue;">
+                                        <div style="background-color: white;">
                                            <pre style="background-color: white;">{{detail.post}}</pre> 
+                                           
                                   
                                         </div>
+                                       
+
                                        
                                         <hr class="my-2" />
                                         <div class="d-flex align-items-center justify-content-between">
@@ -75,16 +78,23 @@
                                                 <img src="/media/{{comment.user.image}}" width="38" height="38" alt="Avatar" />
                                             </div>
                                             <div class="media-body">
-                                                <h6 class="font-weight-bolder mb-25">{{comment.user.first_name}}</h6>
+                                                <h6 class="font-weight-bolder mb-25">{{comment.user.first_name}} {{comment.user.last_name}}</h6>
                                                 <p class="card-text">{{comment.created_on}}</p>
                                                 <p class="card-text">
-                                                   {{comment.comment}}
+                                                    <h4>{{comment.comment}}</h5><br>
+                                                   <small><a href="">like</a>   <a href="">Dislike</a></small>
+                                                   
                                                 </p>
                                                 <a href="javascript:void(0);">
                                                     <div class="d-inline-flex align-items-center">
                                                         <i data-feather="corner-up-left" class="font-medium-3 mr-50"></i>
-                                                        <span>Reply</span>
+                                                        <span><a href="{% url 'reply' comment.id %}"> Reply </a></span>
                                                     </div>
+
+                                                    <br>
+
+                                                
+
                                                 </a>
                                             </div>
                                         </div>
