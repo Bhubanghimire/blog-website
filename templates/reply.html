@@ -21,7 +21,7 @@
                                                         <h6 class="font-weight-bolder mb-25">{{cmnt.user.first_name}}</h6>
                                                         <p class="card-text">{{cmnt.created_on}}</p>
                                                         <p class="card-text">
-                                                          <b>{{cmnt.comment}}</b> <br>
+                                                         <a href="{% url 'detail' cmnt.id}"> <b>{{cmnt.comment}}</b></a> <br>
                                                           <small><a href="">like</a>   <a href="">Dislike</a></small>
                                                         </p>
                                                         <h3>replies:</h3>
@@ -30,7 +30,7 @@
                                                         {% for i in reply %}
                                                         <a href="javascript:void(0);">
                                                             <div class="d-inline-flex align-items-center">
-                                                                <span style="margin: 0px;">
+                                                                <span >
                                                                             
 
                                                      <div class="card-body">
