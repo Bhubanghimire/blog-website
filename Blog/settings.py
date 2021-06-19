@@ -145,6 +145,11 @@ STATICFILES_DIRS = [
     BASE_DIR / "static",
 ]
 
+from os.path import sys
+
+PROJECT_ROOT = os.path.normpath(os.path.dirname(__file__))
+STATIC_ROOT = os.path.join(PROJECT_ROOT, 'static')
+
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.2/howto/static-files/

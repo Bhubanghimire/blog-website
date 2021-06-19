@@ -2,20 +2,44 @@ from django.shortcuts import render,redirect
 from django.http import HttpResponse
 from .models import Post,Category
 from .forms import *
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 # Create your views here.
 
 
 def Home(request):
-    post= Post.objects.all()
+    obj= Post.objects.all().order_by('-order')
     category = Category.objects.all()
-    param = {'post':post, 'category':category}
+
+    page = request.GET.get('page', 1)
+    paginator = Paginator(obj, 6)
+
+    try:
+        topics = paginator.page(page)
+    except PageNotAnInteger:
+        topics = paginator.page(1)
+    except EmptyPage:
+        topics = paginator.page(paginator.num_pages)
+
+    param = {'topics': topics, 'category':category}
     return render(request,'index.html',param)
 
 
 def Categories(request,id):
-    post=Post.objects.filter(category=id)
+    obj=Post.objects.filter(category=id)
     category = Category.objects.all()
-    param = {'post':post, 'category':category}
+    
+
+    page = request.GET.get('page', 1)
+    paginator = Paginator(obj, 6)
+
+    try:
+        topics = paginator.page(page)
+    except PageNotAnInteger:
+        topics = paginator.page(1)
+    except EmptyPage:
+        topics = paginator.page(paginator.num_pages)
+
+    param = {'topics': topics, 'category':category}
     
     return render(request,'index.html',param)
 
@@ -104,3 +128,6 @@ def ReplyView(request,id):
         param={'category':category,'form':form,'cmnt':cmnt,'reply':replies}
 
     return render(request,"reply.html",param)
+
+
+

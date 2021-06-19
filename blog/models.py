@@ -74,15 +74,24 @@ class Post(models.Model):
     image = models.ImageField(upload_to='image/post/', blank=True, null=True)
     created_by = models.ForeignKey(User, on_delete=models.SET_NULL,null=True)
     created_date =  models.DateField(auto_now=True)
+    order=models.DateTimeField(auto_now=True)
+    likes = models.ManyToManyField(User, related_name='blogpost_like')
+
+    
+    class Meta:
+        ordering =('-order',)
 
     def __str__(self):
         return self.title
+    
+    def number_of_likes(self):
+        return self.likes.count()
 
 
 class Comment(models.Model):
     user = models.ForeignKey(User, on_delete=models.SET_NULL,null=True,related_name="comment")
     comment = models.TextField()
-    like = models.IntegerField(default=0)
+    likes = models.ManyToManyField(User, related_name='comment_like')
     post = models.ForeignKey(Post,on_delete=models.SET_NULL,null=True,related_name="cmnts")
     created_on = models.DateField(auto_now=True)
 
@@ -91,6 +100,9 @@ class Comment(models.Model):
 
     def __str__(self):
         return self.comment
+
+    def number_of_likes(self):
+        return self.likes.count()
     
   
     
