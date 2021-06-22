@@ -72,10 +72,9 @@ class Post(models.Model):
     post = models.TextField()
     category = models.ManyToManyField(Category)
     image = models.ImageField(upload_to='image/post/', blank=True, null=True)
-    created_by = models.ForeignKey(User, on_delete=models.SET_NULL,null=True)
+    created_by = models.ForeignKey(User, on_delete=models.SET_NULL,null=True,  default="adminn@gmail.com")
     created_date =  models.DateField(auto_now=True)
     order=models.DateTimeField(auto_now=True)
-    likes = models.ManyToManyField(User, related_name='blogpost_like')
 
     
     class Meta:
