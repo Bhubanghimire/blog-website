@@ -46,7 +46,6 @@ def Categories(request,id):
 
 def DetailView(request,id):
     detail=Post.objects.get(id=id)
-    print(detail)
     category = Category.objects.all()
     cmnt=Comment.objects.filter( post=detail)
     replies=[]

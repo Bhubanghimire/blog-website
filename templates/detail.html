@@ -9,12 +9,12 @@
                             <!-- Blog -->
                             <div class="col-12">
                                 <div class="card">
-                                    <img src="/media/{{detail.image}}" style="height:300px" class="img-fluid card-img-top" alt="Blog Detail Pic" />
+                                    <img src="/media/{{detail.image}}" style="height: 420px; object-fit: cover;" class="img-fluid card-img-top" alt="Blog Detail Pic" />
                                     <div class="card-body">
                                         <h4 class="card-title">{{detail.title}}</h4>
                                         <div class="media">
                                             <div class="avatar mr-50">
-                                                <img src="/media/{{detail.created_by.image}}" alt="Avatar" width="24" height="24" />
+                                                <img src="/media/{{detail.created_by.image}}" alt="Avatar" width=auto height="24" />
                                             </div>
                                             <div class="media-body">
                                                 <small class="text-muted mr-25">by</small>
@@ -32,8 +32,7 @@
                                             
                                         </div>
                                         <div style="background-color: white;">
-                                           <pre style="background-color: white;">{{detail.post}}</pre> 
-                                           
+                                           <p style="background-color: white;">{{detail.post | safe}}</p>
                                   
                                         </div>
                                        

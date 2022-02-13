@@ -18,13 +18,16 @@ from django.urls import path,include
 from django.conf import settings
 from django.conf.urls.static import static
 
-from django.views.static import serve
-from django.conf.urls import url
+# customizing admin interface
+admin.site.site_header = 'MY Blog'
+admin.site.site_title = 'MY Blog'
+admin.site.index_title = 'MY Blog'
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('',include('blog.urls')),
     path('accounts/',include('accounts.urls')),
+    path('summernote/', include('django_summernote.urls')),
 ]
 
 if settings.DEBUG:

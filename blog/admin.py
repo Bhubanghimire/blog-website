@@ -1,9 +1,14 @@
 from django.contrib import admin
 from .models import *
+from django.contrib import admin
+from django.contrib.auth.admin import UserAdmin as DjangoUserAdmin
+from django.utils.translation import ugettext_lazy as _
+from django_summernote.admin import SummernoteModelAdmin
+from .models import User
 
 # # Register your models here.
 
-admin.site.register(Post)
+# admin.site.register(Post)
 admin.site.register(Category)
 admin.site.register(Contact)
 
@@ -11,19 +16,16 @@ admin.site.register(Reply)
 
 @admin.register(Comment)
 class CommentAdmin(admin.ModelAdmin):
-    list_display = ( 'user','comment', 'post', 'created_on')
-    list_filter = ( 'created_on',)
+    list_display = ('user','comment', 'post', 'created_on')
+    list_filter = ('created_on',)
     search_fields = ('name', 'email', 'comment')
 
+@admin.register(Post)
+class CommentAdmin(SummernoteModelAdmin):
+    list_display = ('id','title', 'post', 'created_date')
+    list_filter = ('created_date',)
+    summernote_fields = ('post',)
 
-
-
-
-from django.contrib import admin
-from django.contrib.auth.admin import UserAdmin as DjangoUserAdmin
-from django.utils.translation import ugettext_lazy as _
-
-from .models import User
 
 
 @admin.register(User)
@@ -49,21 +51,5 @@ class UserAdmin(DjangoUserAdmin):
     ordering = ('email',)
 
 
-# class CustomUserAdmin(UserAdmin):
-#     model = User
-#     list_display = ('email', 'is_staff', 'is_active',)
-#     list_filter = ('email', 'is_staff', 'is_active',)
-#     fieldsets = (
-#         (None, {'fields': ('username','email', 'password')}),
-#         ('Permissions', {'fields': ('is_staff', 'is_active')}),
-#     )
-#     add_fieldsets = (
-#         (None, {
-#             'classes': ('wide',),
-#             'fields': ('email', 'password1', 'password2', 'is_staff', 'is_active')}
-#         ),
-#     )
-#     search_fields = ('email',)
-#     ordering = ('email',)
-
-# admin.site.register(User)
+from django_summernote.utils import get_attachment_model
+admin.site.unregister(get_attachment_model())
