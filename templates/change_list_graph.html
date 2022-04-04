@@ -1,0 +1,20 @@
+{% extends "admin/base_site.html" %}
+
+{% block field_sets %}
+kasdfkl
+{% if original %}
+original ezists
+<div class="aligned form-row">
+    <div>
+        <label>Preview:</label>
+        <img
+            alt="image preview"
+            src="/{{ original.image.url }}"
+            style="max-height: 300px;">
+    </div>
+</div>
+{% endif %}
+{% for fieldset in adminform %}
+  {% include "admin/includes/fieldset.html" %}
+{% endfor %}
+{% endblock %}

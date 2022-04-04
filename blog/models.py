@@ -8,6 +8,7 @@ from django.utils.translation import ugettext_lazy as _
 from django.contrib.auth.models import AbstractUser, BaseUserManager ## A new class is imported. ##
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
+from django.utils.html import mark_safe
 
 
 class UserManager(BaseUserManager):
@@ -73,7 +74,7 @@ class Post(models.Model):
     category = models.ManyToManyField(Category)
     image = models.ImageField(upload_to='image/post/', blank=True, null=True)
     created_by = models.ForeignKey(User, on_delete=models.SET_NULL,null=True,  default="adminn@gmail.com")
-    created_date =  models.DateField(auto_now=True)
+    created_date = models.DateField(auto_now=True)
     order=models.DateTimeField(auto_now=True)
 
     
@@ -85,6 +86,13 @@ class Post(models.Model):
     
     def number_of_likes(self):
         return self.likes.count()
+
+    @property
+    def image_preview(self):
+        if self.image:
+            for i in range(2):
+                return mark_safe('<img src="{}" width="100" height="100" />'.format(self.image.url))
+        return ""
 
 
 class Comment(models.Model):
@@ -125,4 +133,17 @@ class Reply(models.Model):
         ordering = ('created_on',)
 
     def __str__(self):
-        return str( self.reply_by)
+        return str(self.reply_by)
+
+class Gallery(models.Model):
+    image = models.ImageField(upload_to="gallery")
+    blog = models.ForeignKey(Post, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.blog.title
+
+    @property
+    def image_preview(self):
+        if self.image:
+            return mark_safe('<img src="{}" width="100" height="100" />'.format(self.image.url))
+        return ""
