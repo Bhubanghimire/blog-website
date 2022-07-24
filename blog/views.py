@@ -93,7 +93,9 @@ def Contact(request):
     else:
         form = ContactForm()
     category = Category.objects.all()
-    return render(request, 'contact.html', {'form': form, 'category': category})
+    about = About.objects.first()
+    print(about)
+    return render(request, 'contact.html', {'form': form, 'category': category,"about":about})
 
 
 def AboutView(request):

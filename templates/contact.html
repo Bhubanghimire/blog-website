@@ -49,13 +49,13 @@
                         <div class="col-md-6 d-flex align-items-stretch">
                             <div class="info-wrap w-100 p-lg-5 p-4 img">
                                 <h3>Contact Me</h3>
-                                <p class="mb-4">I am available for your contact</p>
+                                <p class="mb-4">You can leave your feedbacks or contact me for any queries, here!</p>
                         <div class="dbox w-100 d-flex align-items-start">
                             <div class="icon d-flex align-items-center justify-content-center">
                                 <span class="fa fa-map-marker"></span>
                             </div>
                             <div class="text pl-3">
-                            <p><span>Address:</span> Langhali chowk,dharan-8 sunsari</p>
+                            <p><span>Address:</span> {{about.address}} </p>
                           </div>
                       </div>
                         <div class="dbox w-100 d-flex align-items-center">
@@ -63,7 +63,7 @@
                                 <span class="fa fa-phone"></span>
                             </div>
                             <div class="text pl-3">
-                            <p><span>Phone:</span> <a href="tel://1234567920">+977 9862853130</a></p>
+                            <p><span>Phone:</span> <a href="tel://{{ about.phone }}"> {{ about.phone }}</a></p>
                           </div>
                       </div>
                         <div class="dbox w-100 d-flex align-items-center">
@@ -71,7 +71,7 @@
                                 <span class="fa fa-paper-plane"></span>
                             </div>
                             <div class="text pl-3">
-                            <p><span>Email:</span> <a href="mailto:info@yoursite.com">bhubanghimire3130@gmail.com</a></p>
+                            <p><span>Email:</span> <a href="mailto:info@yoursite.com"> {{ about.email }}</a></p>
                           </div>
                       </div>
                         <div class="dbox w-100 d-flex align-items-center">
@@ -79,7 +79,7 @@
                                 <span class="fa fa-globe"></span>
                             </div>
                             <div class="text pl-3">
-                            <p><span>Website</span> <a href="#">mysite.com</a></p>
+                            <p><span>Website</span> <a href="#">{{ about.website}}</a></p>
                           </div>
                       </div>
                   </div>
