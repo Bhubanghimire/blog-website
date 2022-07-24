@@ -9,8 +9,9 @@ from blog.models import User
 
 # Register your models here.
 @admin.register(About)
-class CommentAdmin(admin.ModelAdmin):
+class CommentAdmin(SummernoteModelAdmin):
     list_display = ('id', 'name', 'email', 'phone')
+    summernote_fields = ('description',)
 
 
 @admin.register(User)
