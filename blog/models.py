@@ -68,7 +68,7 @@ class Post(models.Model):
     title = models.CharField(max_length=200, default="")
     post = models.TextField()
     category = models.ManyToManyField(Category)
-    image = models.ImageField(upload_to='image/post/')
+    image = models.ImageField(upload_to='image/post/', blank=True)
     created_by = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, default="adminn@gmail.com")
     created_date = models.DateField(auto_now=True)
     order = models.DateTimeField(auto_now=True)
