@@ -2,10 +2,9 @@ from django.db import models
 from django.contrib.auth.models import AbstractUser
 from django.utils.translation import ugettext_lazy as _
 
-
 # Create your models here.
 
-from django.contrib.auth.models import AbstractUser, BaseUserManager ## A new class is imported. ##
+from django.contrib.auth.models import AbstractUser, BaseUserManager  ## A new class is imported. ##
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
 from django.utils.html import mark_safe
@@ -45,8 +44,7 @@ class UserManager(BaseUserManager):
         return self._create_user(email, password, **extra_fields)
 
 
-
-class User(AbstractUser,UserManager):
+class User(AbstractUser, UserManager):
     username = None
     email = models.EmailField(_('email address'), unique=True)
 
@@ -54,10 +52,10 @@ class User(AbstractUser,UserManager):
     REQUIRED_FIELDS = []
     objects = UserManager()
     image = models.ImageField(upload_to='image/user/')
-    
-    
+
+
 class Category(models.Model):
-    category=models.CharField(max_length=200, unique=True)
+    category = models.CharField(max_length=200, unique=True)
 
     class Meta:
         ordering = ('category',)
@@ -66,24 +64,21 @@ class Category(models.Model):
         return self.category
 
 
-
-
 class Post(models.Model):
-    title=models.CharField(max_length=200,default="")
+    title = models.CharField(max_length=200, default="")
     post = models.TextField()
     category = models.ManyToManyField(Category)
-    image = models.ImageField(upload_to='image/post/', blank=True, null=True)
-    created_by = models.ForeignKey(User, on_delete=models.SET_NULL,null=True,  default="adminn@gmail.com")
+    image = models.ImageField(upload_to='image/post/')
+    created_by = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, default="adminn@gmail.com")
     created_date = models.DateField(auto_now=True)
-    order=models.DateTimeField(auto_now=True)
+    order = models.DateTimeField(auto_now=True)
 
-    
     class Meta:
-        ordering =('-order',)
+        ordering = ('-order',)
 
     def __str__(self):
         return self.title
-    
+
     def number_of_likes(self):
         return self.likes.count()
 
@@ -96,10 +91,10 @@ class Post(models.Model):
 
 
 class Comment(models.Model):
-    user = models.ForeignKey(User, on_delete=models.SET_NULL,null=True,related_name="comment")
+    user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, related_name="comment")
     comment = models.TextField()
     likes = models.ManyToManyField(User, related_name='comment_like')
-    post = models.ForeignKey(Post,on_delete=models.SET_NULL,null=True,related_name="cmnts")
+    post = models.ForeignKey(Post, on_delete=models.SET_NULL, null=True, related_name="cmnts")
     created_on = models.DateField(auto_now=True)
 
     class Meta:
@@ -110,9 +105,7 @@ class Comment(models.Model):
 
     def number_of_likes(self):
         return self.likes.count()
-    
-  
-    
+
 
 class Contact(models.Model):
     full_name = models.CharField(max_length=100)
@@ -124,9 +117,9 @@ class Contact(models.Model):
 
 
 class Reply(models.Model):
-    reply_by = models.ForeignKey(User, on_delete=models.SET_NULL,null=True,related_name="user_reply")
+    reply_by = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, related_name="user_reply")
     reply = models.CharField(max_length=20000)
-    reply_to = models.ForeignKey(Comment,on_delete=models.SET_NULL,null=True,related_name="reply_post")
+    reply_to = models.ForeignKey(Comment, on_delete=models.SET_NULL, null=True, related_name="reply_post")
     created_on = models.DateField(auto_now=True)
 
     class Meta:
@@ -134,6 +127,7 @@ class Reply(models.Model):
 
     def __str__(self):
         return str(self.reply_by)
+
 
 class Gallery(models.Model):
     image = models.ImageField(upload_to="gallery")

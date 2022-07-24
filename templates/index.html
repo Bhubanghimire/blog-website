@@ -38,7 +38,7 @@
                                             
                                         </div>
                                         <p class="card-text blog-content-truncate">
-                                            {{i.post|slice:"0:50"}}
+                                            {{i.post | safe | slice:"0:50"}}
                                         </p>
                                         <hr />
                                         <div class="d-flex justify-content-between align-items-center">

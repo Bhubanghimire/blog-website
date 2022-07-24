@@ -1,13 +1,15 @@
-from django.shortcuts import render,redirect
+from django.shortcuts import render, redirect
 from django.http import HttpResponse
-from .models import Post,Category
+from .models import Post, Category
 from .forms import *
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from accounts.models import About
+
 # Create your views here.
 
 
 def Home(request):
-    obj= Post.objects.all().order_by('-order')
+    obj = Post.objects.all().order_by('-order')
     category = Category.objects.all()
 
     page = request.GET.get('page', 1)
@@ -20,14 +22,13 @@ def Home(request):
     except EmptyPage:
         topics = paginator.page(paginator.num_pages)
 
-    param = {'topics': topics, 'category':category}
-    return render(request,'index.html',param)
+    param = {'topics': topics, 'category': category}
+    return render(request, 'index.html', param)
 
 
-def Categories(request,id):
-    obj=Post.objects.filter(category=id)
+def Categories(request, id):
+    obj = Post.objects.filter(category=id)
     category = Category.objects.all()
-    
 
     page = request.GET.get('page', 1)
     paginator = Paginator(obj, 6)
@@ -39,45 +40,44 @@ def Categories(request,id):
     except EmptyPage:
         topics = paginator.page(paginator.num_pages)
 
-    param = {'topics': topics, 'category':category}
-    
-    return render(request,'index.html',param)
+    param = {'topics': topics, 'category': category}
+
+    return render(request, 'index.html', param)
 
 
-def DetailView(request,id):
-    detail=Post.objects.get(id=id)
+def DetailView(request, id):
+    detail = Post.objects.get(id=id)
     category = Category.objects.all()
-    cmnt=Comment.objects.filter( post=detail)
-    replies=[]
+    cmnt = Comment.objects.filter(post=detail)
+    replies = []
     for i in cmnt:
         print(i)
-        rep=Reply.objects.filter(reply_to=i).exists()
+        rep = Reply.objects.filter(reply_to=i).exists()
         print(rep)
         if rep:
-            rep=Reply.objects.filter(reply_to=i)
+            rep = Reply.objects.filter(reply_to=i)
             replies.append(rep)
-        
+
     print(replies)
     if request.method == "POST":
         form = CmntForm(request.POST)
         if form.is_valid():
-            f=form.save(commit=False)
-            user=request.POST.get("name","bhuban")
-            user=User.objects.filter(email=user)
+            f = form.save(commit=False)
+            user = request.POST.get("name", "bhuban")
+            user = User.objects.filter(email=user)
             if not user:
-                result ="Please Login First"
-                return(request, 'login.html',{'result':result})
+                result = "Please Login First"
+                return (request, 'login.html', {'result': result})
 
-            f.user=user[0]
+            f.user = user[0]
             f.post = detail
             f.save()
-            return redirect("detail", id=id)   
-        
-    else:
-        form =CmntForm()
-    param={'detail':detail,'category':category,'form':form,'cmnt':cmnt,'reply':replies}
-    return render(request,'detail.html',param)
+            return redirect("detail", id=id)
 
+    else:
+        form = CmntForm()
+    param = {'detail': detail, 'category': category, 'form': form, 'cmnt': cmnt, 'reply': replies}
+    return render(request, 'detail.html', param)
 
 
 def Contact(request):
@@ -89,44 +89,41 @@ def Contact(request):
         else:
             form = ContactForm(request.POST)
             category = Category.objects.all().order_by('category')
-            return render(request, 'contact.html', {'form': form,'category':category})
+            return render(request, 'contact.html', {'form': form, 'category': category})
     else:
         form = ContactForm()
     category = Category.objects.all()
-    return render(request,'contact.html',{'form': form,'category':category})
+    return render(request, 'contact.html', {'form': form, 'category': category})
 
 
-def About(request):
+def AboutView(request):
     category = Category.objects.all()
-    return render(request,'about.html',{'category':category})
+    about = About.objects.first()
+    return render(request, 'about.html', {'category': category,"about":about})
 
 
-
-def ReplyView(request,id):
-    cmnt=Comment.objects.get(id=id)
+def ReplyView(request, id):
+    cmnt = Comment.objects.get(id=id)
     category = Category.objects.all()
     replies = Reply.objects.filter(reply_to=cmnt)
     print(replies)
-    if request.method=="POST":
+    if request.method == "POST":
         form = ReplyForm(request.POST)
         if form.is_valid():
-            f=form.save(commit=False)
-            user=request.POST.get("name","bhuban")
-            user=User.objects.filter(email=user)
+            f = form.save(commit=False)
+            user = request.POST.get("name", "bhuban")
+            user = User.objects.filter(email=user)
             if not user:
-                result ="Please Login First"
-                return(request, 'login.html',{'result':result})
+                result = "Please Login First"
+                return (request, 'login.html', {'result': result})
 
-            f.reply_by=user[0]
-            f.reply_to =cmnt
+            f.reply_by = user[0]
+            f.reply_to = cmnt
             f.save()
-            return redirect("reply", id=id) 
+            return redirect("reply", id=id)
 
     else:
         form = ReplyForm()
-        param={'category':category,'form':form,'cmnt':cmnt,'reply':replies}
+        param = {'category': category, 'form': form, 'cmnt': cmnt, 'reply': replies}
 
-    return render(request,"reply.html",param)
-
-
-
+    return render(request, "reply.html", param)

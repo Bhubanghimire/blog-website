@@ -28,7 +28,6 @@ urlpatterns = [
     path('',include('blog.urls')),
     path('accounts/',include('accounts.urls')),
     path('summernote/', include('django_summernote.urls')),
-    path('grappelli/', include('grappelli.urls')),  # grappelli URLS
 
 ]
 

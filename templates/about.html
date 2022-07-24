@@ -15,7 +15,7 @@
                             <div class="contact-wrap w-100 p-lg-5 p-4">
                                 <h3 class="mb-4">About Me</h3>
                                 <div id="form-message-warning" class="mb-4"></div> 
-                          <img src="/media/image/user/195800301_1144883586007790_5670629067985280180_n.jpg" alt="" height="200px">
+                          <img src="{{ about.photo.url }}" alt="" height="200px">
                                 
                             </div>
                         </div>
@@ -23,13 +23,13 @@
   
                             <div class="info-wrap w-100 p-lg-5 p-4 img">
                                 <h3>Biography</h3>
-                                <p class="mb-4">Lorem ipsum dolor sit amet consectetur adipisicing elit. Nam consectetur doloribus error sunt. Corrupti quos id voluptatem tempore eum quisquam labore sunt natus? Mollitia nostrum ea animi consequatur consectetur labore? Lorem ipsum, dolor sit amet consectetur adipisicing elit. Facilis, blanditiis tenetur illo nihil voluptatem nulla fuga, dolores ratione quisquam nemo quia hic magnam impedit ut amet tempora, asperiores quo nam! </p>
+                                <p class="mb-4"> {{ about.description }} </p>
                         <div class="dbox w-100 d-flex align-items-start">
                             <div class="icon d-flex align-items-center justify-content-center">
                                 <span class="fa fa-map-marker"></span>
                             </div>
                             <div class="text pl-2">
-                            <p><span>Address:</span> Langhali chowk,dharan-8 sunsari</p>
+                            <p><span>Address:</span> {{ about.address }}</p>
                           </div>
                       </div>
                         <div class="dbox w-100 d-flex align-items-center">
@@ -37,7 +37,7 @@
                                 <span class="fa fa-phone"></span>
                             </div>
                             <div class="text pl-2">
-                            <p><span>Phone:</span> <a href="tel://1234567920">+977 9862853130</a></p>
+                            <p><span>Phone:</span> <a href="tel://1234567920"> {{ about.phone }} </a></p>
                           </div>
                       </div>
                         <div class="dbox w-100 d-flex align-items-center">
@@ -45,7 +45,7 @@
                                 <span class="fa fa-paper-plane"></span>
                             </div>
                             <div class="text pl-2">
-                            <p><span>Email:</span> <a href="mailto:info@yoursite.com">bhubanghimire3130@gmail.com</a></p>
+                            <p><span>Email:</span> <a href="mailto:info@yoursite.com"> {{ about.email }}</a></p>
                           </div>
                       </div>
                         <div class="dbox w-100 d-flex align-items-center">
@@ -53,7 +53,7 @@
                                 <span class="fa fa-globe"></span>
                             </div>
                             <div class="text pl-2">
-                            <p><span>Website</span> <a href="https://www.facebook.com/BhuOne.3130">facebook.com</a></p>
+                            <p><span>Website</span> <a href="https://www.facebook.com/BhuOne.3130">{{ about.website }}</a></p>
                           </div>
                       </div>
                   </div>
