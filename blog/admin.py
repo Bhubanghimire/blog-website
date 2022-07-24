@@ -51,7 +51,7 @@ class GalleryAdminInline(admin.StackedInline):
 
 @admin.register(Post)
 class PostAdmin(SummernoteModelAdmin):
-    list_display = ('id', 'title', 'post', "thumbnail_preview", 'created_date')
+    list_display = ('id', 'title', "thumbnail_preview", 'created_date')
     list_filter = ('created_date',)
     summernote_fields = ('post',)
     readonly_fields = ('thumbnail_preview',)
