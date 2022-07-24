@@ -1,6 +1,5 @@
 {% extends 'base.html' %}
 
-
             {% block content %}
             <div class="content-detached content-left">
                 <div class="content-body">
@@ -11,16 +10,14 @@
                             {% for i in topics %}
                             <div class="col-md-4 col-12">
                                 <div class="card">
-                                    <a  href="{% url 'detail' i.id %}">
-                                        <img class="card-img-top" src='/media/{{i.image}}' width="508" height="400"  alt="Blog Post pic" />
-                                    </a>
+
                                     <div class="card-body">
                                         <h4 class="card-title">
                                             <a href="{% url 'detail' i.id %}" class="blog-title-truncate text-body-heading">{{i.title}}</a>
                                         </h4>
                                         <div class="media">
                                             <div class="avatar mr-50">
-                                                <img src="/media/{{i.created_by.image}}" width="24" height="24" />
+                                                <img src="{{i.created_by.image.url}}" width="24" height="24" />
                                             </div>
                                             <div class="media-body">
                                                 <small class="text-muted mr-25">by</small>
